@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit your profile</title>
+</head>
+<body>
+  <form action="/my-backend/profile" method="POST">
+    <table width="100%" cellspacing="30px;">
+      <tr>
+        <td colspan="2" style="border: 1px solid black; background-color: grey;">
+          <h2>Tell us about yourself</h2>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <h4>Profile Information</h4>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div>Last Name</div>
+          <input name="lastName" type="text" style="width: 100%;"/>
+        </td>
+        <td>
+          <div>First Name</div>
+          <input name="firstName" type="text" style="width: 100%;"/>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <span>Gender</span>
+          <input name="gender" type="radio" value="male"/> Male 
+          <input name="gender" type="radio" value="female"/> Female
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>Current Address</h4>
+          <select name="city">
+            <option value="" disabled selected>Province/City</option>
+            <option value="Phnom Penh">Phnom Penh</option>
+            <option value="Kampong Cham">Kampong Cham</option>
+            <option value="Preyveng">Preyveng</option>
+          </select>
+        </td>
+        <td>
+          <h4>Address</h4>
+          <textarea name="address" rows="5" cols="50"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <h4>Skills</h4>
+          <input name="skills" type="checkbox" value="designing"/> Designing 
+          <input name="skills" type="checkbox" value="coding"/> Coding
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <h4>Choose your profile photo</h4>
+          <input type="file" />
+        </td>
+      </tr>
+    </table>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
