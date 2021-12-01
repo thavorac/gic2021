@@ -1,0 +1,27 @@
+html {
+  font-size: 1rem;
+}
+body {
+  margin: 0px;
+}
+.container1 {
+  border: 1px solid rgb(135, 15, 127);
+  background-color: azure;
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+.container2 {
+  font-size: 1.5rem;
+  padding: 10px;
+}
+.container3 ul {
+  font-size: 2rem;
+}
+@media only screen and (max-width: 500px) {
+  .container1 {
+    background-color: bisque;
+  }
+  .container2 {
+    display: none;
+  }
+}
