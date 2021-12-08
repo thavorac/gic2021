@@ -1,0 +1,50 @@
+.title-wrapper {
+  display: flex;
+  margin-top: 2rem;
+}
+.title-wrapper .title {
+  background-color: rgb(250, 198, 130);
+  padding: 10px 20px 10px 50px;
+  color: white;
+  font-weight: bold;
+}
+.title-wrapper .sub-title {
+  padding: 10px 20px;
+  font-size: smaller;
+  color: rgb(192, 195, 198);
+}
+
+.menu-wrapper {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+}
+.menu-wrapper > div {
+  padding: 10px;
+}
+.menu-wrapper > div.active {
+  background-color: rgb(250, 198, 130);
+  color: white;
+}
+
+.images-wrapper {
+  margin: 3rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 1rem;
+}
+.images-wrapper .image-item {
+  width: 15rem;
+}
+.image-item img {
+  width: 100%;
+}
+
+@media screen and (max-width: 425px) {
+  .images-wrapper .image-item {
+    width: 10rem;
+  }
+}
