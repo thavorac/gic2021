@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="canvas" width="500" height="300" />
+  <script>
+    // Step 1
+    class Vehicle {
+      color = '#F9DC5C';
+      price = null;
+      speed = 0;
+      direction = null;
+      canvasContext = null;
+      
+      constructor(brand, type, ctx) {
+        this.brand = brand;
+        this.type = type;
+        this.canvasContext = ctx;
+        this.canvasContext.fillStyle = this.color;
+        this.canvasContext.fillRect(10,10,30,20);
+      }
+      moveForward(speed) {
+        this.speed = speed;
+        this.direction = 'forward';
+      }
+      turnLeft(speed) {
+        this.speed = speed;
+        this.direction = 'left';
+      }
+      turnRight(speed) {
+        this.speed = speed;
+        this.direction = 'right';
+      }
+      stop() {
+        this.speed = 0;
+        this.direction = null;
+      }
+    }
+    // Step 2
+    class Bicycle extends Vehicle {
+      color = '#A9DC5C';
+      constructor(brand, ctx) {
+        super(brand, 'Bicycle', ctx);
+      }
+    }
+    // Step 3
+    class MountainBike extends Bicycle {
+      owner = 'sok';
+      color = '#141287';
+      constructor(ctx) {
+        super('Mountain', ctx);
+      }
+    }
+    // Step 4
+    let canvas = document.getElementById("canvas");
+    let ctx = canvas.getContext('2d');
+    let mountainBike = new MountainBike(ctx);
+    mountainBike.moveForward(10);
+    
+  </script>
+</body>
+</html>
