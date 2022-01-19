@@ -5,7 +5,7 @@ class Tree {
   height = 30;
   positionX = null;
   positionY = null;
-  speed = 10;
+  speed = 30;
   frameIndex = 0;
 
   constructor(gameContext) {
@@ -24,19 +24,20 @@ class Tree {
     if (this.frameIndex > 9) {
       this.frameIndex = 0;
     }
-
-    if (this.positionX > 0) {
-      this.positionX = this.positionX - this.speed;
-      this.gameContext.ctx.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height); 
-      console.log(this.positionX);
-      this.gameContext.ctx.drawImage(
-        this.shape, 
-        this.frameIndex * 200, 
-        0, 200, 200, 
-        10, 10, 150, 150);
-      requestAnimationFrame(this.move)
-      // this.frameIndex = this.frameIndex + 1;
-      this.frameIndex++;
-    }
+    setTimeout(() => {
+      if (this.positionX > -200) {
+        this.positionX = this.positionX - this.speed;
+        this.gameContext.ctx.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height); 
+        console.log(this.positionX);
+        this.gameContext.ctx.drawImage(
+          this.shape, 
+          this.frameIndex * 200, 0, 200, 200, // Source image
+          this.positionX, this.positionY, 150, 150 // Destination
+        );
+        requestAnimationFrame(this.move)
+        // this.frameIndex = this.frameIndex + 1;
+        this.frameIndex++;
+      }
+    }, 100);
   })
 }
