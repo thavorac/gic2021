@@ -5,13 +5,17 @@ class Game {
   score = null;
   speed = 10;
   level = 1;
-  constructor(ctx) {
-    this.ctx = ctx;
+  constructor() {
+    this.canvas = document.getElementById("canvas");
+    this.ctx = this.canvas.getContext("2d");
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
   }
   
   // Methods
-  start(playerName) {
+  start() {
     // Receive player name and save it.
+    let playerName = document.getElementById("player_name").value;
     if (playerName) {
       this.playerName = playerName;
       console.log('Game is starting!!', this);
