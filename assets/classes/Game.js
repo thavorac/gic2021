@@ -31,7 +31,7 @@ class Game {
     // let dinosaur = new Dinosaur(this.ctx, 20, 100);
 
     // Initialize tree object and display it on the screen
-    let tree = new Tree(this.ctx, 900, 100);
+    let tree = new Tree(this);
     tree.move();
   }
   pause() {
