@@ -25,8 +25,16 @@
       flex-direction: column;
       width: 50%;
     }
-    h3 {
+    h2 {
       text-align: center;
+    }
+    input {
+      margin: 20px 0;
+      padding: 10px;
+      height: 30px;
+    }
+    button {
+      height: 30px;
     }
   </style>
 </head>
@@ -34,7 +42,7 @@
   <div class="parent-container">
     <canvas id="canvas"></canvas>
     <div id="starting-container">
-      <h3>Player Name</h3>
+      <h2>Player Name</h2>
       <input type="text" id="player_name" />
       <button onclick="game.start()">Start Game</button>
     </div>
@@ -43,7 +51,7 @@
   
   <script src="./assets/classes/Game.js"></script>
   <script src="./assets/classes/Dinosaur.js"></script>
-  <script src="./assets/classes/Tree.js"></script>
+  <script src="./assets/classes/Bird.js"></script>
   <script src="./assets/game.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-class Tree {
+class Bird {
   shape = null;
   size = null;
   width = 20;
@@ -13,11 +13,11 @@ class Tree {
     this.shape = new Image();
     this.shape.src = "assets/images/bird.png";
     this.positionX = this.gameContext.canvas.width;
-    this.positionY = 100;
+    this.positionY = 200;
 
     this.shape.onload = (() => {
       console.log('draw image');
-      this.gameContext.ctx.drawImage(this.shape, 0, 0, 200, 200, 10, 10, 150, 150);
+      this.gameContext.ctx.drawImage(this.shape, 0, 0, 200, 200, 10, 10, 75, 75);
     })
   }
   move = (() => {
@@ -32,11 +32,10 @@ class Tree {
         this.gameContext.ctx.drawImage(
           this.shape, 
           this.frameIndex * 200, 0, 200, 200, // Source image
-          this.positionX, this.positionY, 150, 150 // Destination
+          this.positionX, this.positionY, 75, 75 // Destination
         );
         requestAnimationFrame(this.move)
-        // this.frameIndex = this.frameIndex + 1;
-        this.frameIndex++;
+        this.frameIndex++;  // the same as: this.frameIndex = this.frameIndex + 1;
       }
     }, 100);
   })

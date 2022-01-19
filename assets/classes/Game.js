@@ -28,11 +28,12 @@ class Game {
     startingContainer.style.display = "none";
 
     // Initinalize dinosaur object and display it on the screen
-    // let dinosaur = new Dinosaur(this.ctx, 20, 100);
+    let dinosaur = new Dinosaur(this);
+    dinosaur.move();
 
     // Initialize tree object and display it on the screen
-    let tree = new Tree(this);
-    tree.move();
+    let bird = new Bird(this);
+    bird.move();
   }
   pause() {
     console.log('Pause the game');

@@ -7,13 +7,21 @@ class Dinosaur {
   positionX = null;
   positionY = null;
 
-  constructor(ctx, x, y) {
-    this.ctx = ctx;
-    this.positionX = x;
-    this.positionY = y;
-    this.ctx.fillStyle = '#F9DC5C';
-    this.ctx.fillRect(this.positionX, this.positionY, this.width, this.height);
+  constructor(gameContext) {
+    this.gameContext = gameContext;
+    this.positionX = 10;
+    this.positionY = 200;
+
+    this.appearance = new Image();
+    this.appearance.src = "assets/images/bird.png";
+
+    this.appearance.onload = (() => {
+      this.gameContext.ctx.drawImage(this.appearance, 0, 0, 200, 200, this.positionX, this.positionY, 75, 75);
+    })
   }
+  move = (() => {
+    console.log('dinosaur move');
+  })
   setSpeed(baseSpeed, level) {
     this.speed = baseSpeed + level;
   }
