@@ -1,19 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h3>I'm the biggest one!</h3>
+    <div style="display: flex; justify-content: space-between">
+      <ComponentA
+        @messageSent="recieveFromChild"
+        @message1Sent="recieveFromChild"
+        message1="Another message"
+        message="Message from parent"
+      ></ComponentA>
+      <ComponentB number="10"></ComponentB>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ComponentA from './components/ComponentA.vue';
+import ComponentB from './components/ComponentB.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    ComponentA,
+    ComponentB,
+  },
+  methods: {
+    recieveFromChild(value) {
+      console.log('value from child', value);
+    },
+  },
+};
 </script>
 
 <style>
@@ -24,5 +39,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  border: 1px solid green;
+  padding: 20px;
 }
 </style>
