@@ -1,16 +1,24 @@
 <template>
   <div class="component-b-container">
     <h3>I'm component B</h3>
-    <p>
-      {{ number }}
-    </p>
+    <p>X = {{ x }}</p>
+    <ComponentC :x="x" @xChanged="increaseX"></ComponentC>
   </div>
 </template>
 
 <script>
+import ComponentC from './ComponentC.vue';
 export default {
   name: 'ComponentB',
-  props: ['number'],
+  props: ['number', 'x'],
+  components: {
+    ComponentC,
+  },
+  methods: {
+    increaseX(value) {
+      this.$emit('xChanged', value);
+    },
+  },
 };
 </script>
 
