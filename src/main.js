@@ -1,8 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
+import firebase from "firebase";
 
 const firebaseConfig = {
   apiKey: process.env.VUE_APP_API_KEY,
@@ -13,6 +11,6 @@ const firebaseConfig = {
   appId: process.env.VUE_APP_APP_ID
 };
 
-firebase.initializeApp(firebaseConfig)
+firebase.initializeApp(firebaseConfig);
 
 createApp(App).mount('#app')

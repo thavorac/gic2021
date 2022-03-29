@@ -58,11 +58,20 @@
 </template>
 
 <script>
+import * as firebase from 'firebase/app';
+
 export default {
   name: 'App',
   components: {},
   mounted() {
-    console.log('process.env', process.env.VUE_APP_APP_ID);
+    var db = firebase.firestore();
+    db.collection('tasks')
+      .get()
+      .then((querySnapshot) => {
+        const tasks = querySnapshot.docs.map((doc) => doc.data());
+        // do something with documents
+        console.log(tasks);
+      });
   },
 };
 </script>
