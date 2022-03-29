@@ -15,10 +15,18 @@
 
           <hr />
           <ul id="sortable" class="list-unstyled">
-            <li v-for="task in tasks" class="ui-state-default" :key="task.id">
+            <li
+              v-for="task in todoTasks"
+              class="ui-state-default"
+              :key="task.id"
+            >
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" value="" />{{ task.title }}</label
+                  <input
+                    @change="markDone(task.id)"
+                    type="checkbox"
+                    value=""
+                  />{{ task.title }}</label
                 >
               </div>
             </li>
@@ -32,8 +40,8 @@
         <div class="todolist">
           <h1>Already Done</h1>
           <ul id="done-items" class="list-unstyled">
-            <li>
-              Some item
+            <li v-for="task in doneTasks" :key="task.id">
+              {{ task.title }}
               <button class="remove-item btn btn-default btn-xs pull-right">
                 <span class="glyphicon glyphicon-remove"></span>
               </button>
@@ -65,6 +73,26 @@ export default {
       .then((querySnapshot) => {
         this.tasks = querySnapshot.docs.map((doc) => doc.data());
       });
+  },
+  computed: {
+    doneTasks: function () {
+      const doneTasks = [];
+      for (let task of this.tasks) {
+        if (task.isDone) {
+          doneTasks.push(task);
+        }
+      }
+      return doneTasks;
+    },
+    todoTasks: function () {
+      return this.tasks.filter((el) => !el.isDone);
+    },
+  },
+  methods: {
+    markDone(taskId) {
+      const findTask = this.tasks.findIndex((el) => el.id == taskId);
+      this.tasks[findTask].isDone = true;
+    },
   },
 };
 </script>
