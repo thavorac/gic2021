@@ -61,6 +61,9 @@
 export default {
   name: 'App',
   components: {},
+  mounted() {
+    console.log('process.env', process.env.VUE_APP_APP_ID);
+  },
 };
 </script>
 
