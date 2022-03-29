@@ -15,22 +15,10 @@
 
           <hr />
           <ul id="sortable" class="list-unstyled">
-            <li class="ui-state-default">
+            <li v-for="task in tasks" class="ui-state-default" :key="task.id">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" value="" />Take out the trash</label
-                >
-              </div>
-            </li>
-            <li class="ui-state-default">
-              <div class="checkbox">
-                <label> <input type="checkbox" value="" />Buy bread</label>
-              </div>
-            </li>
-            <li class="ui-state-default">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" value="" />Teach penguins to fly</label
+                  <input type="checkbox" value="" />{{ task.title }}</label
                 >
               </div>
             </li>
@@ -62,15 +50,20 @@ import * as firebase from 'firebase/app';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      message: 'hello',
+      tasks: [],
+    };
+  },
   components: {},
-  mounted() {
+  created() {
+    // requesting data from firebase
     var db = firebase.firestore();
     db.collection('tasks')
       .get()
       .then((querySnapshot) => {
-        const tasks = querySnapshot.docs.map((doc) => doc.data());
-        // do something with documents
-        console.log(tasks);
+        this.tasks = querySnapshot.docs.map((doc) => doc.data());
       });
   },
 };
