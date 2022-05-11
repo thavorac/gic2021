@@ -31,8 +31,32 @@ exports.register = (req, res) => {
   }
 }
 exports.login = (req, res) => {
-  console.log("user login")
-  res.json({ message: "You are logged in" });
+  const username = req.body.username;
+  const password = req.body.password;
+  // Check if username is exist
+  User.find({username: username}).then(result => {
+    if(result) {
+      // if user exist, check given password with the encrypted password
+      bcrypt.compare(password, result[0].password, function(err, passwordIsMatch) {
+        if(passwordIsMatch) {
+          // if password is correct, return success, with cookie save
+          res.cookie('username', username, {expire: 3600 * 1000});
+          res.cookie('logged-time', new Date().toISOString(), {expire: 3600 * 1000});
+          // store user information to session
+          req.session.userId = result[0]._id;
+          res.json({ message: "You are logged in! "});
+        } else {
+          // else return fail
+          // res.render("signin", {error: true, message: "Password incorrect"});
+          res.json({ message: "password is incorrect "})
+        }
+      })
+    } else {
+      // if user is not exist, return fail
+    }
+  }).catch(err => {
+    console.log(err);
+  })
 }
 
 exports.logout = (req, res) => {
