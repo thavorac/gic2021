@@ -4,6 +4,8 @@ exports.register = (req, res) => {
   const gender = req.body.gender;
   const email = req.body.email;
 
+  res.json({ message: 'Register done!'})
+
   // Validate if password and confirm password is match
 
   // Check if email is valid and not exist
