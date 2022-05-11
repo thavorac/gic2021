@@ -1,19 +1,42 @@
+const User = require('../models/users')
+const bcrypt = require("bcryptjs");
+
 exports.register = (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
+  const confirm_password = req.body.confirm_password;
   const gender = req.body.gender;
   const email = req.body.email;
 
-  res.json({ message: 'Register done!'})
-
   // Validate if password and confirm password is match
+  if (password != confirm_password) {
+    res.json({ message: 'Your password is not match!' })
+  } else {
+    // --Check if email is valid and not exist
 
-  // Check if email is valid and not exist
+    // -- Send veriy code or link to that email
 
-  // -- Send veriy code or link to that email
+    // Create user record + password hash
+    const salt = bcrypt.genSaltSync(10);
+    const date = new Date();
+    const user = new User({
+      username: username,
+      password: bcrypt.hashSync(password, salt),
+      registerAt: date.toISOString()
+    }).save().then(result => {
+      res.json({ message: "Your account has been registered!!"})
+    }).catch(err => {
+      res.json({ message: "Something went wrong!" })
+    })
+  }
+}
+exports.login = (req, res) => {
+  console.log("user login")
+  res.json({ message: "You are logged in" });
+}
 
-  // Create user record + password hash
-
-  // response and redirect to login
+exports.logout = (req, res) => {
+  console.log("user log out")
+  res.json({ message: "You are logged out"});
 }
 

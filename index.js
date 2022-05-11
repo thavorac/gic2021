@@ -26,26 +26,14 @@ app.use(bodyParser.json());
 app.use('/', guestRoutes)
 app.use('/admin', adminRoutes);
 
-app.listen(4000);
-// mongoose.connect('mongodb+srv://admin:helloadmin@cluster0.dd8ls.mongodb.net/super_app?retryWrites=true&w=majority', { 
-//   useNewUrlParser: true,
-//   useFindAndModify: false,
-//   useUnifiedTopology: true
-// })
-// .then(result => {
-//   console.log("Db is connected");
-//   app.listen(4000);
-// }).catch(err => {
-//   console.log(err);
-// })
-// mongoose.connect('mongodb+srv://user1:helloword@cluster0.qyreg.mongodb.net/Post?retryWrites=true&w=majority',{ 
-//   useNewUrlParser: true,
-//   useFindAndModify: false,
-//   useUnifiedTopology: true
-// })
-// .then(result => {
-//   console.log("Db is connected");
-//   app.listen(4000);
-// }).catch(err => {
-//   console.log(err);
-// })
+mongoose.connect('mongodb+srv://user1:helloword@cluster0.qyreg.mongodb.net/super_app?retryWrites=true&w=majority',{ 
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true
+})
+.then(result => {
+  console.log("Db is connected");
+  app.listen(4000);
+}).catch(err => {
+  console.log(err);
+})
