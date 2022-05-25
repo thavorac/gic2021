@@ -46,7 +46,7 @@ exports.login = (req, res) => {
           res.cookie('logged-time', new Date().toISOString(), {expire: 3600 * 1000});
           // store user information to session
           req.session.userId = result[0]._id;
-          const token = jwt.sign("here the text to be encoded", "sshhhhh")
+          const token = jwt.sign("here the text to be encoded", process.env.JWT_SECRET)
           console.log('token', token)
           console.log('SECRET', process.env.JWT_SECRET)
           res.json({ message: "You are logged in! ", token: token });
