@@ -17,6 +17,8 @@ app.use(session({
     sameSite: true,
     secure: false
   },
+  resave: true,
+  saveUninitialized: true,
   secret: "this is a secret key",
   name: 'sid'
 }));

@@ -1,5 +1,7 @@
 const User = require('../models/users')
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const { TokenExpiredError } = require('jsonwebtoken');
 
 exports.register = (req, res) => {
   const username = req.body.username;
@@ -44,7 +46,10 @@ exports.login = (req, res) => {
           res.cookie('logged-time', new Date().toISOString(), {expire: 3600 * 1000});
           // store user information to session
           req.session.userId = result[0]._id;
-          res.json({ message: "You are logged in! "});
+          const token = jwt.sign("here the text to be encoded", "sshhhhh")
+          console.log('token', token)
+          console.log('SECRET', process.env.JWT_SECRET)
+          res.json({ message: "You are logged in! ", token: token });
         } else {
           // else return fail
           // res.render("signin", {error: true, message: "Password incorrect"});
