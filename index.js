@@ -4,8 +4,27 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+const jwt = require("jsonwebtoken")
 
 const app = express();
+const authCheck = function (req, res, next) {
+  console.log('auth check')
+  const token = req.headers.token
+  console.log('token', token)
+  try {
+    const decoded = jwt.verify(token, 'sshhhhh');
+    if (decoded) {
+      next()
+    } else {
+      res.json({ message: "You are not real user" })
+    }
+  } catch (e) {
+    res.json({ message: "You are not real user" })
+  }
+}
+
+app.use(authCheck)
+
 const adminRoutes = require("./routes/admin");
 const guestRoutes = require("./routes/guest")
 
