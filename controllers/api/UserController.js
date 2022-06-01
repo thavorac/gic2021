@@ -20,10 +20,17 @@ module.exports = {
     create: async (req, res, next) => {
         try {
             const {
-                email
+                email,
+                password
             } = req.body;
             const userExist = await User.findUserByEmail(email)
             if (!userExist) {
+                if (password.length < 6) {
+                  return res.status(400).json({
+                    status: 'Failure',
+                    msg: `Password is less then 6 characters`
+                });
+                }
                 const newUser = await storeUser(req.body)
                 if (newUser) {
                     return res.status(200).json({
@@ -32,7 +39,10 @@ module.exports = {
                     });
                 }
             }else{
-                console.log('duplicate')
+              return res.status(400).json({
+                status: 'Failure',
+                msg: `User is already exist`
+            });
             }
         } catch (error) {
             console.log(error)
